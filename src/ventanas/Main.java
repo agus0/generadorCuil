@@ -8,8 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import funciones.Cuil;
+import funciones.Funciones;
 
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -20,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URI;
 
 public class Main extends JFrame {
 
@@ -97,6 +100,8 @@ public class Main extends JFrame {
 					textCuil.setText(Cuil.getCuil(Integer.parseInt(textDni.getText()), sexo));
 				}catch (Exception e) {
 					System.out.println(e.getMessage());
+					JOptionPane.showMessageDialog(contentPane, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					textCuil.setText("");
 				}
 			}
 		});
@@ -113,6 +118,12 @@ public class Main extends JFrame {
 		textCuil.setColumns(10);
 		
 		JLabel lblAgustinPadron = new JLabel("Agustin Padron");
+		lblAgustinPadron.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Funciones.openURL("http://github.com/agus0/generadorCuil");
+			}
+		});
 		lblAgustinPadron.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblAgustinPadron.setBounds(126, 158, 110, 14);
 		panel.add(lblAgustinPadron);
